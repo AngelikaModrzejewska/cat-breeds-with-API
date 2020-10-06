@@ -1,0 +1,35 @@
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "sectionInfo"
+    "sectionTile";
+}
+
+header {
+  grid-area: header;
+}
+
+.section-info {
+  grid-area: sectionInfo;
+}
+
+.section-tile {
+  grid-area: sectionTile;
+}
+
+.container {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+span {
+  color: $primary-color;
+}

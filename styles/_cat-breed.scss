@@ -1,0 +1,66 @@
+.cat-breed {
+  padding: $main-spacing;
+  border: 1px solid $border-color;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "picture description";
+
+  .cat-breed__picture {
+    grid-area: picture;
+    display: flex;
+    height: 400px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .cat-breed__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 110%;
+      height: 110%;
+      margin: -5%;
+      padding: $main-spacing;
+      background-size: cover;
+      filter: blur(10px);
+    }
+
+    .cat-breed__image {
+      position: relative;
+      z-index: 2;
+
+      img {
+        width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .cat-breed__description {
+    position: relative;
+    padding: 0 $main-spacing;
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: $primary-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .cat-breed__pic {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      img {
+        width: 100px;
+      }
+
+    }
+  }
+}
