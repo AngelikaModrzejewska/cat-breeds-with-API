@@ -1,41 +1,40 @@
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const autoprefixer = require('autoprefixer');
 
-module.exports = {
-    entry: './src/index.js',
-
-    mode: 'development',
-
+const config = {
+    entry: './src/scripts/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js',
-        publicPath: '/'
+        filename: path.join('scripts', 'bundle.js')
     },
-
-    devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        compress: true,
-        port: 3000,
-        hot: true,
-    },
-
     module: {
         rules: [
+            // Scripts
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        sourceMaps: true
+                    }
+                }
             },
+            // index.html
             {
-                test: /\.scss$/,
+                test: /\.html$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
+                    {
+                        loader: 'html-loader',
+                        options: { minimize: true }
+                    }
                 ]
             },
+            // Styles
             {
                 test: /\.css$|\.scss$/,
                 use: [
@@ -84,15 +83,39 @@ module.exports = {
                     }
                 ]
             },
+            // Fonts
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/',
+                            publicPath: '../fonts'
+                        }
+                    }
+                ]
+            }
         ]
     },
-
     plugins: [
-        new HtmlWebpackPlugin({ template: './index.html' }),
-        new webpack.HotModuleReplacementPlugin(),
+        new CleanWebpackPlugin(),
+        new HtmlWebPackPlugin({
+            template: './src/index.html',
+            filename: './index.html'
+        }),
         new MiniCssExtractPlugin({
             filename: 'styles/[name].css',
             chunkFilename: 'styles/chunks/[id].css'
         })
     ]
+};
+
+module.exports = (env, argv) => {
+    if (argv.mode === 'development') {
+        config.devtool = 'source-map';
+    }
+
+    return config;
 };

@@ -1,4 +1,4 @@
-import '../styles/style.scss';
+import '../styles/main.scss';
 
 class Cat {
     constructor() {
