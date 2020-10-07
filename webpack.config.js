@@ -28,14 +28,14 @@ module.exports = {
                 exclude: /node_modules/,
                 use: 'babel-loader'
             },
-            {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                ]
-            },
+            // {
+            //     test: /\.scss$/,
+            //     use: [
+            //         'style-loader',
+            //         'css-loader',
+            //         'sass-loader',
+            //     ]
+            // },
             {
                 test: /\.css$|\.scss$/,
                 use: [
@@ -49,25 +49,25 @@ module.exports = {
                             sourceMap: true
                         }
                     },
-                    {
-                        loader: 'resolve-url-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
+                    // {
+                    //     loader: 'resolve-url-loader',
+                    //     options: {
+                    //         sourceMap: true
+                    //     }
+                    // },
                     {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: true
                         }
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                            plugins: () => [autoprefixer()]
-                        }
-                    }
+                    // {
+                    //     loader: 'postcss-loader',
+                    //     options: {
+                    //         sourceMap: true,
+                    //         plugins: () => [autoprefixer()]
+                    //     }
+                    // }
                 ]
             },
             // Images
