@@ -1,4 +1,4 @@
-# flying-animated-balloons
+# cat-breeds-with-API
 
 This project is based on the webpack-boilerplate template. 
 
