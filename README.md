@@ -9,6 +9,8 @@ This project is based on the webpack-boilerplate template.
 * CSS flexbox and grid layout, keyframes-animation (cat picture loader)
 * Sass
 * BEM methodology
+* npm
 
 Black cat picture: https://pixabay.com/
+
 API: https://thecatapi.com/
